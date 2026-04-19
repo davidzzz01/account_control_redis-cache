@@ -9,18 +9,16 @@ const logger = winston.createLogger({
     })
   ),
   transports: [
-    // Mostra no console (com cores, ótimo para desenvolvimento)
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize({ all: true })
       )
     }),
-    // Salva apenas os erros em logs/error.log
+    
     new winston.transports.File({ 
       filename: 'logs/error.log', 
       level: 'error' 
     }),
-    // Salva TUDO em logs/combined.log
     new winston.transports.File({ 
       filename: 'logs/combined.log' 
     }),
