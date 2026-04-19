@@ -1,11 +1,5 @@
 import userService from '../services/userService.js';
 
-/**
- * Controlador responsável por retornar a lista de usuários cadastrados.
- * @param {import('express').Request} req Requisição Express
- * @param {import('express').Response} res Resposta Express
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const getAll = async (req, res, next) => {
   try {
     const users = await userService.getAll();
@@ -15,12 +9,6 @@ const getAll = async (req, res, next) => {
   }
 };
 
-/**
- * Controlador responsável por buscar um usuário pelo ID.
- * @param {import('express').Request} req Requisição Express com params.id
- * @param {import('express').Response} res Resposta Express
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const getById = async (req, res, next) => {
   try {
     const user = await userService.getById(req.params.id);
@@ -30,12 +18,6 @@ const getById = async (req, res, next) => {
   }
 };
 
-/**
- * Controlador de busca avançada via querystring ?q=nome.
- * @param {import('express').Request} req Requisição Express com query.q
- * @param {import('express').Response} res Resposta Express
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const search = async (req, res, next) => {
   try {
     const users = await userService.search(req.query.q);
@@ -45,12 +27,6 @@ const search = async (req, res, next) => {
   }
 };
 
-/**
- * Endpoint encarregado de processar o login dos usuários.
- * @param {import('express').Request} req Requisição Express (body: email, password)
- * @param {import('express').Response} res Resposta Express
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -61,12 +37,6 @@ const login = async (req, res, next) => {
   }
 };
 
-/**
- * Criação de uma nova conta de usuário.
- * @param {import('express').Request} req Requisição Express contendo o body completo do usuário
- * @param {import('express').Response} res Resposta Express (201)
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const create = async (req, res, next) => {
   try {
     const newUser = await userService.create(req.body);
@@ -76,12 +46,6 @@ const create = async (req, res, next) => {
   }
 };
 
-/**
- * Modificação dos dados da conta baseada no ID.
- * @param {import('express').Request} req Requisição Express com params.id e body
- * @param {import('express').Response} res Resposta Express
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const update = async (req, res, next) => {
   try {
     const updatedUser = await userService.update(req.params.id, req.body);
@@ -91,12 +55,6 @@ const update = async (req, res, next) => {
   }
 };
 
-/**
- * Exclusão lógica/física da conta de um usuário.
- * @param {import('express').Request} req Requisição Express com params.id
- * @param {import('express').Response} res Resposta Express (204)
- * @param {import('express').NextFunction} next Próximo middleware
- */
 const remove = async (req, res, next) => {
   try {
     await userService.remove(req.params.id);
