@@ -1,5 +1,7 @@
-const { ZodError } = require('zod');
-const AppError = require('../errors/AppError');
+import { ZodError } from 'zod';
+import AppError from '../errors/AppError.js';
+
+import logger from '../utils/logger.js';
 
 const errorHandler = (err, req, res, next) => {
   if (err instanceof ZodError) {
@@ -10,8 +12,8 @@ const errorHandler = (err, req, res, next) => {
     return res.status(err.status).json({ message: err.message });
   }
 
-  console.error(err);
+  logger.error(err);
   return res.status(500).json({ message: 'Erro interno do servidor' });
 };
 
-module.exports = errorHandler;
+export default errorHandler;

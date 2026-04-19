@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+import userService from '../services/userService.js';
 
 /**
  * Controlador responsável por retornar a lista de usuários cadastrados.
@@ -106,7 +106,7 @@ const remove = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export default {
   getAll,
   getById,
   search,

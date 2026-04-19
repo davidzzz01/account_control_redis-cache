@@ -1,7 +1,7 @@
-const userModel = require('../models/userModel');
-const redis = require('../redis/client');
-const UserError = require('../errors/UserError');
-const { loginSchema, userSchema } = require('../validations/userSchemas');
+import userModel from '../models/userModel.js';
+import redis from '../redis/client.js';
+import UserError from '../errors/UserError.js';
+import { loginSchema, userSchema } from '../validations/userSchemas.js';
 
 const cacheKey = 'users';
 
@@ -166,7 +166,7 @@ const remove = async (id) => {
   await clearCache();
 };
 
-module.exports = {
+export default {
   getAll,
   getById,
   search,

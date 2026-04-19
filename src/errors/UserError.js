@@ -1,4 +1,4 @@
-const AppError = require('./AppError');
+import AppError from './AppError.js';
 
 class UserError extends AppError {
   constructor(message, status) {
@@ -14,4 +14,4 @@ class UserError extends AppError {
   }
 }
 
-module.exports = UserError;
+export default UserError;

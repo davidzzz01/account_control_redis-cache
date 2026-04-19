@@ -1,11 +1,29 @@
-const userService = require('../userService');
-const userModel = require('../../models/userModel');
-const redis = require('../../redis/client');
-const { ZodError } = require('zod');
-const UserError = require('../../errors/UserError');
+import { jest } from '@jest/globals';
+import { ZodError } from 'zod';
+import UserError from '../../errors/UserError.js';
 
-jest.mock('../../models/userModel');
-jest.mock('../../redis/client');
+jest.unstable_mockModule('../../models/userModel.js', () => ({
+  default: {
+    getAll: jest.fn(),
+    getById: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    remove: jest.fn()
+  }
+}));
+
+jest.unstable_mockModule('../../redis/client.js', () => ({
+  default: {
+    get: jest.fn(),
+    set: jest.fn(),
+    keys: jest.fn(),
+    del: jest.fn()
+  }
+}));
+
+const userModel = (await import('../../models/userModel.js')).default;
+const redis = (await import('../../redis/client.js')).default;
+const userService = (await import('../userService.js')).default;
 
 describe('UserService', () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-const Redis = require('ioredis');
+import Redis from 'ioredis';
 
 const redis = new Redis();
 
@@ -10,4 +10,4 @@ try {
   console.error('[Redis]: Redis error:', error);
 }
 
-module.exports = redis;
+export default redis;

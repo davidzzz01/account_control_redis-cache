@@ -1,4 +1,4 @@
-const { z } = require('zod');
+import { z } from 'zod';
 
 z.setErrorMap((issue, ctx) => {
   if (issue.code === 'invalid_type') {
@@ -38,7 +38,7 @@ const userSchema = z.object({
   })
 });
 
-module.exports = {
+export {
   loginSchema,
   userSchema
 };

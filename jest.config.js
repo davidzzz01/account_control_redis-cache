@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   testRegex: '.*\\.test\\.js$',
   testTimeout: 180000,
 };
